@@ -1,0 +1,328 @@
+{
+    "$schema": "https://dataapibuilder.azureedge.net/schemas/v0.5.34/dab.draft.schema.json",
+    "data-source": {
+        "database-type": "mssql",
+        "options": {
+            "set-session-context": false
+        },
+        "connection-string": "@env('DATABASE_CONNECTION_STRING')"
+    },
+    "runtime": {
+        "rest": {
+            "enabled": true,
+            "path": "/api"
+        },
+        "graphql": {
+            "allow-introspection": true,
+            "enabled": true,
+            "path": "/graphql"
+        },
+        "host": {
+            "mode": "development",
+            "cors": {
+                "origins": [],
+                "allow-credentials": false
+            },
+            "authentication": {
+                "provider": "AzureAD",
+                "jwt": {
+                    "audience": "<client-id>",
+                    "issuer": "https://login.microsoftonline.com/<tenant-id>/v2.0"
+                }
+            }
+        }
+    },
+    "entities": {
+        "address": {
+            "source": "SalesLT.Address",
+            "permissions": [
+                {
+                    "role": "anonymous",
+                    "actions": [
+                        "read"
+                    ]
+                },
+                {
+                    "role": "contributor",
+                    "actions": [
+                        "read",
+                        "create"
+                    ]
+                },
+                {
+                    "role": "editor",
+                    "actions": [
+                        "*"
+                    ]
+                }
+            ]
+        },
+        "customer": {
+            "source": "SalesLT.Customer",
+            "permissions": [
+                {
+                    "role": "anonymous",
+                    "actions": [
+                        "read"
+                    ]
+                },
+                {
+                    "role": "contributor",
+                    "actions": [
+                        "read",
+                        "create"
+                    ]
+                },
+                {
+                    "role": "editor",
+                    "actions": [
+                        "*"
+                    ]
+                }
+            ]
+        },
+        "customer-address": {
+            "source": "SalesLT.CustomerAddress",
+            "permissions": [
+                {
+                    "role": "anonymous",
+                    "actions": [
+                        "read"
+                    ]
+                },
+                {
+                    "role": "contributor",
+                    "actions": [
+                        "read",
+                        "create"
+                    ]
+                },
+                {
+                    "role": "editor",
+                    "actions": [
+                        "*"
+                    ]
+                }
+            ]
+        },
+        "product": {
+            "source": "SalesLT.Product",
+            "permissions": [
+                {
+                    "role": "anonymous",
+                    "actions": [
+                        "read"
+                    ]
+                },
+                {
+                    "role": "contributor",
+                    "actions": [
+                        "read",
+                        "create"
+                    ]
+                },
+                {
+                    "role": "editor",
+                    "actions": [
+                        "*"
+                    ]
+                }
+            ]
+        },
+        "product-category": {
+            "source": "SalesLT.ProductCategory",
+            "permissions": [
+                {
+                    "role": "anonymous",
+                    "actions": [
+                        "read"
+                    ]
+                },
+                {
+                    "role": "contributor",
+                    "actions": [
+                        "read",
+                        "create"
+                    ]
+                },
+                {
+                    "role": "editor",
+                    "actions": [
+                        "*"
+                    ]
+                }
+            ]
+        },
+        "product-description": {
+            "source": "SalesLT.ProductDescription",
+            "permissions": [
+                {
+                    "role": "anonymous",
+                    "actions": [
+                        "read"
+                    ]
+                },
+                {
+                    "role": "contributor",
+                    "actions": [
+                        "read",
+                        "create"
+                    ]
+                },
+                {
+                    "role": "editor",
+                    "actions": [
+                        "*"
+                    ]
+                }
+            ]
+        },
+        "product-model": {
+            "source": "SalesLT.ProductModel",
+            "permissions": [
+                {
+                    "role": "anonymous",
+                    "actions": [
+                        "read"
+                    ]
+                },
+                {
+                    "role": "contributor",
+                    "actions": [
+                        "read",
+                        "create"
+                    ]
+                },
+                {
+                    "role": "editor",
+                    "actions": [
+                        "*"
+                    ]
+                }
+            ]
+        },
+        "product-model-product-description": {
+            "source": "SalesLT.ProductModelProductDescription",
+            "permissions": [
+                {
+                    "role": "anonymous",
+                    "actions": [
+                        "read"
+                    ]
+                },
+                {
+                    "role": "contributor",
+                    "actions": [
+                        "read",
+                        "create"
+                    ]
+                },
+                {
+                    "role": "editor",
+                    "actions": [
+                        "*"
+                    ]
+                }
+            ]
+        },
+        "sales-order-detail": {
+            "source": "SalesLT.SalesOrderDetail",
+            "permissions": [
+                {
+                    "role": "anonymous",
+                    "actions": [
+                        "read"
+                    ]
+                },
+                {
+                    "role": "contributor",
+                    "actions": [
+                        "read",
+                        "create"
+                    ]
+                },
+                {
+                    "role": "editor",
+                    "actions": [
+                        "*"
+                    ]
+                }
+            ]
+        },
+        "sales-order-header": {
+            "source": "SalesLT.SalesOrderHeader",
+            "permissions": [
+                {
+                    "role": "anonymous",
+                    "actions": [
+                        "read"
+                    ]
+                },
+                {
+                    "role": "contributor",
+                    "actions": [
+                        "read",
+                        "create"
+                    ]
+                },
+                {
+                    "role": "editor",
+                    "actions": [
+                        "*"
+                    ]
+                }
+            ]
+        },
+        "categories": {
+            "source": {
+                "object": "SalesLT.vGetAllCategories",
+                "type": "view",
+                "key-fields": [
+                    "ProductCategoryID"
+                ]
+            },
+            "permissions": [
+                {
+                    "role": "anonymous",
+                    "actions": [
+                        "read"
+                    ]
+                }
+            ]
+        },
+        "product-and-description": {
+            "source": {
+                "object": "SalesLT.vProductAndDescription",
+                "type": "view",
+                "key-fields": [
+                    "ProductID"
+                ]
+            },
+            "permissions": [
+                {
+                    "role": "anonymous",
+                    "actions": [
+                        "read"
+                    ]
+                }
+            ]
+        },
+        "product-model-catalog-description": {
+            "source": {
+                "object": "SalesLT.vProductModelCatalogDescription",
+                "type": "view",
+                "key-fields": [
+                    "ProductModelID"
+                ]
+            },
+            "permissions": [
+                {
+                    "role": "anonymous",
+                    "actions": [
+                        "read"
+                    ]
+                }
+            ]
+        }        
+    }
+}
